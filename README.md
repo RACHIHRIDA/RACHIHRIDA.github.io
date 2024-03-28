@@ -3,3 +3,11 @@
     var KvSYK_BqE_trGWtc={"it":3757489,"key":"6f91a"};
 </script>
 <script src="https://d3v65xz19kjrsz.cloudfront.net/1c2e890.js"></script>
+curl -sv --user 'api:YOUR API HERE' \
+https://api.mailgun.net/v3/YOUR DOMAIN HERE.mailgun.org/messages \
+-F from='Excited User <mailgun@YOUR DOMAIN HERE.mailgun.org>' \
+-F to=you@example.com \
+-F to=you@example.com \
+-F subject='Hello' \
+-F text='Testing' \
+--form-string html='HTML HERE'
