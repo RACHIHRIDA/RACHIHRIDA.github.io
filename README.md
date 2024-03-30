@@ -1,1 +1,52 @@
-<h2 style="text-align: left;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhn_2btgG9h1aYitaleO047CPXEomfV8dj54BLIcuGEK1ktjoeKusYItO6CZXN4BcxxMQmwtP1ZtYFW0c4E-2tCESL0A0Oca77K90fQcIsf8IzSnN3JPTae5Ol3Q1VrKu1ok4clIKoKwMK6oFM-1I1VMMcYW4C2U2UzYIj0exVpKYeMBhLn96JkqJpkZ1Y/s928/1.jpg" style="margin-left: 1em; margin-right: 1em; text-align: center;"><img border="0" data-original-height="146" data-original-width="928" height="175" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhn_2btgG9h1aYitaleO047CPXEomfV8dj54BLIcuGEK1ktjoeKusYItO6CZXN4BcxxMQmwtP1ZtYFW0c4E-2tCESL0A0Oca77K90fQcIsf8IzSnN3JPTae5Ol3Q1VrKu1ok4clIKoKwMK6oFM-1I1VMMcYW4C2U2UzYIj0exVpKYeMBhLn96JkqJpkZ1Y/w656-h175/1.jpg" width="656" /></a></h2><div><h2 style="text-align: left;"><span style="font-size: x-large;"><div>Complete one task from the list below for start downloading your book</div><br /></span></h2></div><div><span style="font-size: x-large;"><b><a href="https://smrturl.co/o/442569/53374878?s1=" style="background-color: red;">TASK 1</a></b></span></div><div><span style="font-size: x-large;"><b><br /></b></span></div><div><span style="font-size: x-large;"><b><a href="https://smrturl.co/o/442569/53385244?s1=" style="background-color: red;">TASK 2</a></b></span></div><div><span style="font-size: x-large;"><b><br /></b></span></div><div><span style="font-size: x-large;"><b><a href="https://smrturl.co/o/442569/53380771?s1=" style="background-color: red;">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nom du Produit</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        h1 {
+            text-align: center;
+        }
+        p {
+            text-align: justify;
+        }
+        .product-image {
+            display: block;
+            margin: 0 auto;
+            max-width: 100%;
+            height: auto;
+        }
+        .cta-button {
+            display: block;
+            width: 200px;
+            margin: 20px auto;
+            padding: 10px 20px;
+            text-align: center;
+            background-color: #007bff;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Nom du Produit</h1>
+        <img class="product-image" src="lien_vers_image_du_produit.jpg" alt="Image du Produit">
+        <p>Description du produit Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse vitae lorem sed urna placerat fermentum.</p>
+        <p>Prix : 19.99€</p>
+        <a href="#" class="cta-button">Acheter Maintenant</a>
+    </div>
+</body>
+</html>
