@@ -3,21 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <LInk rel="stylesheet" href="Untitled-1.css"> </LInk>
+    <title>Pinterest Automation</title>
 </head>
 <body>
-    <form style="margin: 30px;" action="login.PHP" method="post">
-        <label style="margin: 200px;" for="Email"></label>
-        <input id='Email'   type="text" placeholder="Email" required>
-        <Label  for="Password"></Label>
-        <input id="Password" type="text" placeholder="Password" maxlength="40" required >
-        <button > Login</button>
-    </form>
-    
-    
 
-   
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script>
+
+// تثبيت ملف تشغيل Chrome باستخدام ChromeDriverManager
+axios.get('https://raw.githubusercontent.com/roseline124/pinterest/main/script.py')
+  .then(function (response) {
+    // تنفيذ الكود البرمجي Python
+    eval(response.data);
+  })
+  .catch(function (error) {
+    console.log(error);
+  });
+
+</script>
+
 </body>
 </html>
-
