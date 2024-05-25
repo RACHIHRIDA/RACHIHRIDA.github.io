@@ -19,6 +19,90 @@ window.pintrk.queue.push(Array.prototype.slice.call(arguments))};var
 pintrk('load', '2612983376747', {em: '<user_email_address>'});
 pintrk('page');
 </script>
+
+<script>
+pintrk('track', 'checkout', {
+event_id: 'eventId0001',
+value: 100,
+order_quantity: 1,
+currency: 'USD'
+});
+</script>
+
+
+
+<script>
+pintrk('track', 'addtocart', {
+event_id: 'eventId0001',
+value: 100,
+order_quantity: 1,
+currency: 'USD'
+});
+</script>
+
+
+
+
+<script>
+pintrk('track', 'pagevisit', {
+event_id: 'eventId0001'
+});
+</script>
+
+
+
+<script>
+pintrk('track', 'signup', {
+event_id: 'eventId0001'
+});
+</script>
+
+
+
+<script>
+pintrk('track', 'watchvideo', {
+event_id: 'eventId0001',
+video_title: 'How to style your Parker Boots'
+});
+</script>
+
+
+
+<script>
+pintrk('track', 'lead', {
+event_id: 'eventId0001',
+lead_type: 'Newsletter'
+});
+</script>
+
+
+
+
+<script>
+pintrk('track', 'search', {
+event_id: 'eventId0001',
+search_query: 'boots'
+});
+</script>
+
+
+
+
+<script>
+pintrk('track', 'viewcategory', {
+event_id: 'eventId0001'
+});
+</script>
+
+
+
+<script>
+pintrk('track', 'user_defined_event_name', {
+event_id: 'eventId0001'
+});
+</script>
+
+
 <noscript>
 <img height="1" width="1" style="display:none;" alt=""
   src="https://ct.pinterest.com/v3/?event=init&tid=2612983376747&pd[em]=<hashed_email_address>&noscript=1" />
