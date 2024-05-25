@@ -6,6 +6,6 @@
    
 </head>
 <body>
-<h1>Hello user  </h1>
+<h1 style=" color:red" >Hello user  </h1>
 </body>
 </html>
