@@ -16,7 +16,7 @@
         .navbar {
             position: fixed;
             top: 0;
-            width: 90%;
+            width: 100%;
             background-color: #333;
             color: white;
             padding: 10px;
@@ -133,12 +133,15 @@
         }
     </style>
     <script>
-        // Dummy database for login
-        const usersDatabase = {
-            "Mohamed": "123",
-            "Rida": "0109",
-            "DRIS": "1213"
-        };
+        // Simulating a database using localStorage
+        function loadUsers() {
+            const users = JSON.parse(localStorage.getItem('users')) || [];
+            return users;
+        }
+
+        function saveUsers(users) {
+            localStorage.setItem('users', JSON.stringify(users));
+        }
 
         // Function to show the login form
         function showLoginForm() {
@@ -201,7 +204,11 @@
             const username = event.target.username.value;
             const password = event.target.password.value;
 
-            if (usersDatabase[username] && usersDatabase[username] === password) {
+            const users = loadUsers();
+
+            const user = users.find(user => user.username === username && user.password === password);
+
+            if (user) {
                 showWelcomeMessage(username);
             } else {
                 alert('Invalid username or password. Please try again.');
@@ -211,11 +218,23 @@
         // Function to handle signup form submission
         function handleSignup(event) {
             event.preventDefault();
+            const email = event.target.email.value;
+            const username = event.target.username.value;
             const password = event.target.password.value;
             const confirmPassword = event.target['confirm-password'].value;
 
             if (password === confirmPassword) {
-                showEmailConfirmation();
+                const users = loadUsers();
+                const userExists = users.some(user => user.username === username);
+
+                if (userExists) {
+                    document.querySelector('.error-message').innerText = 'Username already exists.';
+                    document.querySelector('.error-message').style.display = 'block';
+                } else {
+                    users.push({ email, username, password });
+                    saveUsers(users);
+                    showEmailConfirmation();
+                }
             } else {
                 document.querySelector('.error-message').innerText = 'Passwords do not match.';
                 document.querySelector('.error-message').style.display = 'block';
@@ -229,120 +248,103 @@
             const pricePerThousand = 3; // $3 for 1000 followers
             const totalAmount = Math.ceil(followers / 1000) * pricePerThousand;
 
-            document.querySelector('.payment-form h1').innerText = `Payment for ${followers} Followers on ${platform}`;
-            document.querySelector('.payment-form p').innerText = `Total Amount: $${totalAmount}`;
+            document.querySelector('.payment-amount').innerText = `You need to pay: $${totalAmount}`;
         }
 
-        // Function to toggle password visibility
-        function togglePasswordVisibility(passwordField, toggleButton) {
-            const input = document.querySelector(passwordField);
-            input.type = input.type === "password" ? "text" : "password";
-            toggleButton.innerText = toggleButton.innerText === "Show" ? "Hide" : "Show";
-        }
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelector('.login-form').addEventListener('submit', handleLogin);
+            document.querySelector('.signup-form').addEventListener('submit', handleSignup);
+            document.querySelector('.payment-form').addEventListener('submit', calculatePayment);
+        });
     </script>
 </head>
 <body>
-
-    <!-- Fixed Navbar -->
     <div class="navbar">
-        <button onclick="showSignupForm()">Sign Up</button>
         <button onclick="showLoginForm()">Login</button>
+        <button onclick="showSignupForm()">Sign Up</button>
     </div>
 
-    <!-- Main Container -->
     <div class="container">
         <h1>Buy Social Media Followers</h1>
-        <h2>Select Your Platform</h2>
-
-        <!-- Instagram Followers Service -->
+        <h2>Select a platform and increase your followers!</h2>
         <div class="service">
-            <h3>Instagram Followers</h3>
-           
-            <p>1000 Followers for $3</p>
-            <button onclick="showPaymentForm()">Buy Now</button>
+            <span>Instagram</span>
+            <button onclick="showSignupForm()">Get Followers</button>
         </div>
-
-        <!-- Facebook Followers Service -->
         <div class="service">
-            <h3>Facebook Followers</h3>
-            <p>1000 Followers for $3</p>
-            <button onclick="showPaymentForm()">Buy Now</button>
+            <span>Twitter</span>
+            <button onclick="showSignupForm()">Get Followers</button>
         </div>
-
-        <!-- TikTok Followers Service -->
         <div class="service">
-            <h3>TikTok Followers</h3>
-            <p>1000 Followers for $3</p>
-            <button onclick="showPaymentForm()">Buy Now</button>
+            <span>Facebook</span>
+            <button onclick="showSignupForm()">Get Followers</button>
         </div>
     </div>
 
-    <!-- Login Form -->
     <div class="login-form form-container">
         <h1>Login</h1>
-        <form onsubmit="handleLogin(event)">
+        <form action="login.php" method="POST">
             <input type="text" name="username" placeholder="Username" required>
             <input type="password" name="password" placeholder="Password" required>
             <div class="show-password">
-                <input type="checkbox" id="login-show-password" onclick="togglePasswordVisibility('input[name=password]', this)">
-                <label for="login-show-password">Show Password</label>
+                <input type="checkbox" onclick="this.previousElementSibling.type = this.checked ? 'text' : 'password'"> Show Password
             </div>
-            <div class="forgot-password"><a href="#">Forgot Password?</a></div>
-            <div class="error-message" style="display: none;"></div>
             <button type="submit">Login</button>
-            <div class="back-to-home"><a href="#" onclick="showMainPage()">Back to Home</a></div>
+            <div class="forgot-password">
+                <a href="#" onclick="alert('Password recovery not implemented')">Forgot password?</a>
+            </div>
+            <div class="back-to-home">
+                <a href="#" onclick="showMainPage()">Back to Home</a>
+            </div>
         </form>
     </div>
 
-    <!-- Sign Up Form -->
     <div class="signup-form form-container">
         <h1>Sign Up</h1>
-        <form onsubmit="handleSignup(event)">
+        <form action="signup.php" method="POST">
             <input type="email" name="email" placeholder="Email" required>
             <input type="text" name="username" placeholder="Username" required>
             <input type="password" name="password" placeholder="Password" required>
             <input type="password" name="confirm-password" placeholder="Confirm Password" required>
             <div class="show-password">
-                <input type="checkbox" id="signup-show-password" onclick="togglePasswordVisibility('input[name=password]', this)">
-                <label for="signup-show-password">Show Password</label>
+                <input type="checkbox" onclick="this.previousElementSibling.type = this.checked ? 'text' : 'password'"> Show Password
             </div>
-            <div class="error-message" style="display: none;"></div>
             <button type="submit">Sign Up</button>
-            <div class="back-to-home"><a href="#" onclick="showMainPage()">Back to Home</a></div>
+            <div class="error-message"></div>
+            <div class="back-to-home">
+                <a href="#" onclick="showMainPage()">Back to Home</a>
+            </div>
         </form>
     </div>
 
-    <!-- Email Confirmation -->
     <div class="email-confirmation form-container">
-        <h1>Check Your Email</h1>
-        <p>Please check your email for confirmation.</p>
-        <div class="back-to-home"><a href="#" onclick="showMainPage()">Back to Home</a></div>
+        <h1>Verify Your Email</h1>
+        <p>A confirmation email has been sent to your inbox. Please verify your email to continue.</p>
+        <div class="back-to-home">
+            <a href="#" onclick="showMainPage()">Back to Home</a>
+        </div>
     </div>
 
-    <!-- Welcome Message -->
     <div class="welcome-message form-container">
         <h1></h1>
-        <div class="back-to-home"><a href="#" onclick="showMainPage()">Back to Home</a></div>
     </div>
 
-    <!-- Payment Form -->
     <div class="payment-form form-container">
         <h1>Payment</h1>
-        <form onsubmit="calculatePayment(); return false;">
+        <form>
+            <label for="platform">Choose platform:</label>
             <select name="platform" required>
-                <option value="">Select Platform</option>
-                <option value="Instagram">Instagram</option>
-                <option value="Facebook">Facebook</option>
-                <option value="TikTok">TikTok</option>
+                <option value="instagram">Instagram</option>
+                <option value="twitter">Twitter</option>
+                <option value="facebook">Facebook</option>
             </select>
-            <input type="number" name="followers" placeholder="Number of Followers" required>
-            <button type="submit">Calculate Amount</button>
+            <input type="number" name="followers" placeholder="Number of followers" required>
+            <button type="submit">Calculate Payment</button>
         </form>
-        <h2></h2>
-        <p></p>
-        <div class="back-to-home"><a href="#" onclick="showMainPage()">Back to Home</a></div>
+        <p class="payment-amount"></p>
+        <div class="back-to-home">
+            <a href="#" onclick="showMainPage()">Back to Home</a>
+        </div>
     </div>
-
 </body>
 </html>
-
